@@ -44,7 +44,7 @@ class MyDemo06 {
             synchronized (object) {
                 System.out.println("开始！");
                 object.wait();
-                //Thread.sleep(1000);
+                Thread.sleep(1000);
                 System.out.println("结束！");
             }
         } catch (InterruptedException e) {

@@ -13,7 +13,7 @@ public class Demo04 {
             MyThread04A myThread04A = new MyThread04A(object);
             myThread04A.start();
             Thread.sleep(3000);
-            MyThread04B myThread04B = new MyThread04B(object);
+            MyThread04B myThread04B =new MyThread04B(object);
             myThread04B.start();
         } catch (InterruptedException e) {
             e.printStackTrace();
