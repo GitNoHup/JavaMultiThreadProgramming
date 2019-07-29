@@ -4,6 +4,10 @@ import com.zhang.demo03.entity.ValueObject;
 
 /**
  * @Description 多生产者，多消费者
+ * notify()是随机进行唤醒的
+ * 解决方案，使用notifyAll()唤醒所有就不会出现假死情况了
+ * 出现假死的条件，当两个消费者等待生产者生产数据，生产者1生产了数据进入waiting状态，并唤醒了生产者2
+ * 这个时候生产者2判断已经有数据未消费进入waiting状态，这时所有线程都进入waiting状态
  * @Date 2019-05-05 16:52
  * @Created Mr.zhang
  */
@@ -23,7 +27,16 @@ public class Demo12 {
             myThread12B[i].start();
         }
 
-        //Thread.sleep(5000);
+        Thread.sleep(5000);
+
+        /**
+         * 打印执行状态
+         */
+        Thread[] threadArray = new Thread[Thread.currentThread().getThreadGroup().activeCount()];
+        Thread.currentThread().getThreadGroup().enumerate(threadArray);
+        for(int i=0; i< threadArray.length; i++){
+            System.out.println(threadArray[i].getName()+" "+threadArray[i].getState());
+        }
 
 
     }
